@@ -33,14 +33,21 @@ def extract_text_from_pdf(file: UploadFile) -> str:
 # Function to extract text from JSON
 def extract_text_from_json(file: UploadFile) -> str:
     try:
+        # Read and decode the JSON content from the uploaded file
         json_content = json.loads(file.file.read().decode("utf-8"))
-        return json.dumps(json_content, indent=2)
+        
+        # Extract the 'data' field
+        extracted_data = json_content.get("data", "")
+        
+        # Return the extracted data as a string
+        return extracted_data
     except json.JSONDecodeError as e:
         traceback.print_exc()
         raise HTTPException(status_code=400, detail=f"Invalid JSON format: {str(e)}")
     except Exception as e:
         traceback.print_exc()
         raise HTTPException(status_code=400, detail=f"Error reading JSON: {str(e)}")
+    
 
 # Function to extract questions from JSON file
 def extract_questions_from_json(file: UploadFile) -> List[str]:
