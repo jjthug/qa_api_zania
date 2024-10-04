@@ -1,0 +1,6 @@
+curl --request POST \
+  --url http://localhost:8000/answer-questions \
+  --header 'Content-Type: multipart/form-data' \
+  --header 'User-Agent: insomnia/9.3.3' \
+  --form questions_file=@/run/user/1000/doc/4ecd55e9/questions.json \
+  --form 'input_file=@/run/user/1000/doc/d783f926/Quantum mechanics - Wikipedia.pdf'
